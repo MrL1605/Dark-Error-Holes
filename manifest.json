@@ -1,11 +1,10 @@
 {
   "name": "Dark Error Holes",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "version": "2.1.0",
+  "description": "Darkify Chrome Error Pages",
   "manifest_version": 2,
   "permissions": [
     "tabs",
-    "storage",
     "webRequest",
     "<all_urls>"
   ],
