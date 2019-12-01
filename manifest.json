@@ -11,7 +11,8 @@
   ],
   "background": {
     "scripts": [
-      "src/js/background_script.js"
+      "src/js/deh_background.js",
+      "src/js/deh_util.js"
     ],
     "persistent": true
   }
