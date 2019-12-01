@@ -3,6 +3,11 @@
     box-sizing: border-box
 }
 
+@font-face {
+    font-family: montserrat;
+    src: url("../font/Montserrat-Bold.ttf");
+}
+
 body {
     padding: 0;
     margin: 0
@@ -61,7 +66,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    top: 110px;
+    top: 280px;
     font-size: 42px;
     font-weight: 700;
     color: #fff;

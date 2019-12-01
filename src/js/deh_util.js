@@ -5,6 +5,13 @@
 
 const deh_util = (function () {
 
+    const ERRORS_TO_MSG = {
+        "net::ERR_NAME_NOT_RESOLVED": "DN not found",
+        "net::ERR_NAME_RESOLUTION_FAILED": "No internet",
+        "net::ERR_NETWORK_CHANGED": "Network issue",
+        "net::ERR_FAILED": "Failed to load"
+    };
+
     function setupErrorPage(doc) {
         return new Promise((res) => {
             setErrorMessage(doc);
@@ -15,7 +22,8 @@ const deh_util = (function () {
     }
 
     function setErrorMessage(doc) {
-        doc.getElementById("error-msg").innerText = getErrorCode(doc);
+        let code = getErrorCode(doc);
+        doc.getElementById("error-msg").innerText = ERRORS_TO_MSG[code] ? ERRORS_TO_MSG[code] : code;
     }
 
     function setOnClickListener(doc) {

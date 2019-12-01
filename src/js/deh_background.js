@@ -6,7 +6,10 @@
 
 const deh = (function () {
 
-    const ERRORS_TO_TRACK = ["net::ERR_NAME_NOT_RESOLVED"];
+    const ERRORS_TO_TRACK = ["net::ERR_NAME_NOT_RESOLVED",
+        "net::ERR_NAME_RESOLUTION_FAILED",
+        "net::ERR_NETWORK_CHANGED",
+        "net::ERR_FAILED"];
 
     function init() {
         /**
@@ -15,11 +18,8 @@ const deh = (function () {
         chrome.webRequest.onErrorOccurred.addListener((details) => {
                 if (ERRORS_TO_TRACK.indexOf(details.error) !== -1 && details["frameId"] === 0) {
                     console.log("Creating error page at", details);
-                    // Wait for 300ms and :scream:
-                    setTimeout(() => {
-                        let errorPageUrl = deh_util.createErrorPageURL(details.error, details.url);
-                        chrome.tabs.update(details["tabId"], {url: errorPageUrl});
-                    }, 300);
+                    let errorPageUrl = deh_util.createErrorPageURL(details.error, details.url);
+                    chrome.tabs.update(details["tabId"], {url: errorPageUrl});
                 }
             },
             {urls: ["<all_urls>"]}
@@ -36,7 +36,10 @@ const deh = (function () {
             let internalViews = chrome.extension.getViews({type: "tab"});
             for (let tabView of internalViews) {
                 if (!tabView.document.getElementById("created"))
-                    deh_util.setupErrorPage(tabView.document);
+                    deh_util.setupErrorPage(tabView.document)
+                        .catch((err) => {
+                            console.error("Error while setting up", err);
+                        });
             }
         });
     }
