@@ -5,12 +5,14 @@
   "manifest_version": 2,
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "webRequest",
+    "<all_urls>"
   ],
   "background": {
     "scripts": [
-      "src/background_script.js"
+      "src/js/background_script.js"
     ],
-    "persistent": false
+    "persistent": true
   }
 }
