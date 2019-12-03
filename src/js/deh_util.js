@@ -8,8 +8,7 @@ const deh_util = (function () {
     const ERRORS_TO_MSG = {
         "net::ERR_NAME_NOT_RESOLVED": "DN not found",
         "net::ERR_NAME_RESOLUTION_FAILED": "No internet",
-        "net::ERR_NETWORK_CHANGED": "Network issue",
-        "net::ERR_FAILED": "Failed to load"
+        "net::ERR_NETWORK_CHANGED": "Network issue"
     };
 
     function setupErrorPage(doc) {
