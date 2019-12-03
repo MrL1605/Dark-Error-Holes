@@ -14,5 +14,6 @@
       "src/js/deh_util.js"
     ],
     "persistent": true
-  }
+  },
+  "incognito": "split"
 }
